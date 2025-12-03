@@ -41,7 +41,6 @@ def text_to_speech_with_gtts(input_text, output_filepath):
         print(f"An error occurred while trying to play the audio: {e}")
 
 
-
 def text_to_speech_with_elevenlabs(input_text, output_filepath):
     client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
     audio = client.generate(
@@ -72,6 +71,3 @@ def text_to_speech_with_elevenlabs(input_text, output_filepath):
     except Exception as e:
         print(f"An error occurred while trying to play the audio: {e}")
     return output_filepath
-
-
-
