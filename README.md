@@ -1,19 +1,77 @@
-# Project Setup Guide
+# AI Doctor with Vision and Voice
 
-This guide provides step-by-step instructions to set up your project environment, including the installation of FFmpeg and PortAudio across macOS, Linux, and Windows, as well as setting up a Python virtual environment using Pipenv, pip, or conda.
+This project is an AI-powered virtual doctor that combines voice and vision capabilities to analyze user inputs. It uses speech-to-text (STT) for transcribing audio, a multimodal large language model (LLM) for analyzing images and queries, and text-to-speech (TTS) for generating voice responses. The application is built with Gradio for an interactive user interface.
+
+## Features
+- **Speech-to-Text (STT):** Converts user speech into text using the GROQ API.
+- **Image Analysis:** Analyzes uploaded images in combination with user queries using a multimodal LLM.
+- **Text-to-Speech (TTS):** Converts the AI's response into speech using ElevenLabs or gTTS.
+- **Interactive UI:** Provides an easy-to-use interface for audio and image inputs, and displays both text and audio outputs.
+
+---
 
 ## Table of Contents
 
-1. [Installing FFmpeg and PortAudio](#installing-ffmpeg-and-portaudio)
+1. [Project Files and Their Functions](#project-files-and-their-functions)
+2. [Installing FFmpeg and PortAudio](#installing-ffmpeg-and-portaudio)
    - [macOS](#macos)
    - [Linux](#linux)
    - [Windows](#windows)
-2. [Setting Up a Python Virtual Environment](#setting-up-a-python-virtual-environment)
+3. [Setting Up a Python Virtual Environment](#setting-up-a-python-virtual-environment)
    - [Using Pipenv](#using-pipenv)
    - [Using pip and venv](#using-pip-and-venv)
    - [Using Conda](#using-conda)
-3. [Running the Application](#running-the-application)
-4. [Ensuring Audio Player Works in Gradio](#ensuring-audio-player-works-in-gradio)
+4. [Running the Application](#running-the-application)
+5. [Ensuring Audio Player Works in Gradio](#ensuring-audio-player-works-in-gradio)
+
+---
+
+## Project Files and Their Functions
+
+### `gradio_app.py`
+- **Purpose:** The main entry point of the application.
+- **Functionality:**
+  - Sets up the Gradio interface for audio and image inputs.
+  - Calls functions from other modules to process inputs and generate outputs.
+  - Displays the transcription, AI's response, and voice output in the UI.
+
+### `voice_of_the_patient.py`
+- **Purpose:** Handles audio recording and transcription.
+- **Functionality:**
+  - Records audio from the microphone and saves it as an MP3 file.
+  - Uses the GROQ API to transcribe the audio into text.
+
+### `brain_of_the_doctor.py`
+- **Purpose:** Handles image analysis and query processing.
+- **Functionality:**
+  - Encodes images into base64 format for processing.
+  - Uses a multimodal LLM to analyze the image and user query, generating a response.
+
+### `voice_of_the_doctor.py`
+- **Purpose:** Handles text-to-speech conversion.
+- **Functionality:**
+  - Converts the AI's text response into speech using ElevenLabs or gTTS.
+  - Plays the generated audio file on the user's system.
+
+### `.env.example`
+- **Purpose:** Provides a template for environment variables.
+- **Functionality:**
+  - Contains placeholders for the GROQ and ElevenLabs API keys.
+
+### `requirements.txt`
+- **Purpose:** Lists all the dependencies required for the project.
+- **Functionality:**
+  - Ensures all necessary Python packages are installed.
+
+### `README.md`
+- **Purpose:** Provides setup instructions and an overview of the project.
+- **Functionality:**
+  - Guides users through installation, setup, and running the application.
+
+### `.gitignore`
+- **Purpose:** Specifies files and directories to be ignored by Git.
+- **Functionality:**
+  - Prevents unnecessary files (e.g., cache, logs, virtual environments) from being tracked.
 
 ---
 
